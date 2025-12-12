@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Iglesia Ríos de Agua Viva - Una comunidad de fe en Arraiján, Panamá">
+  <title>Iglesia Ríos de Agua Viva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛪</text></svg>">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, #3a6cf4 0%, #2a4fc7 100%);
+      color: white;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo i {
+      margin-right: 10px;
+      font-size: 1.8rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    nav a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: white;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover:after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        background-color: #3a6cf4;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 200px;
+        display: none;
+        padding: 1rem;
+        border-radius: 0 0 0 10px;
+      }
+      nav ul.show {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: white;
+      }
+    }
+
+    /* Hero Section con Animación */
+    .hero-animation {
+      position: relative;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1a3aa7 0%, #3a6cf4 100%);
+    }
+
+    .hero-content {
+      max-width: 800px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .hero-animation h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      animation: fadeInDown 1s ease-out;
+    }
+
+    .hero-animation p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #3a6cf4;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid #3a6cf4;
+      cursor: pointer;
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+
+    .btn:hover {
+      background-color: transparent;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Animaciones de entrada */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Canvas para animación de partículas */
+    #particles-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    /* Elementos animados adicionales */
+    .floating-elements {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      animation: float 15s infinite linear;
+    }
+
+    .floating-element:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .floating-element:nth-child(2) {
+      width: 120px;
+      height: 120px;
+      top: 70%;
+      left: 80%;
+      animation-delay: -5s;
+    }
+
+    .floating-element:nth-child(3) {
+      width: 60px;
+      height: 60px;
+      top: 50%;
+      left: 20%;
+      animation-delay: -10s;
+    }
+
+    .floating-element:nth-child(4) {
+      width: 100px;
+      height: 100px;
+      top: 20%;
+      left: 70%;
+      animation-delay: -7s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translateY(-20px) rotate(180deg);
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(0) rotate(360deg);
+        opacity: 0.7;
+      }
+    }
+
+    /* Olas animadas */
+    .waves {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 15%;
+      z-index: 1;
+    }
+
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" fill="%23ffffff20"><path d="M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z" /></svg>');
+      background-size: 50% 100%;
+      animation: wave 25s linear infinite;
+    }
+
+    .wave:nth-child(2) {
+      animation: wave 15s linear infinite reverse;
+      opacity: 0.5;
+    }
+
+    .wave:nth-child(3) {
+      animation: wave 30s linear infinite;
+      opacity: 0.3;
+    }
+
+    @keyframes wave {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(-25%);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Secciones generales */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #2a4fc7;
+      position: relative;
+    }
+
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: #3a6cf4;
+      margin: 10px auto;
+      border-radius: 2px;
+    }
+
+    /* Sección de cultos */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: white;
+      padding: 1.8rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+
+    .card i {
+      font-size: 2.5rem;
+      color: #3a6cf4;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      color: #3a6cf4;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    .card p {
+      color: #666;
+    }
+
+    /* Sección de ministerios */
+    .ministries {
+      background-color: #eef2ff;
+    }
+
+    .ministry-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .ministry-item {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      flex: 1 1 300px;
+      max-width: 350px;
+    }
+
+    .ministry-item h3 {
+      color: #3a6cf4;
+      margin-bottom: 0.8rem;
+    }
+
+    /* Sección de contacto */
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-item i {
+      font-size: 1.5rem;
+      color: #3a6cf4;
+    }
+
+    .map iframe {
+      width: 100%;
+      height: 300px;
+      border-radius: 10px;
+      border: none;
+    }
+
+    /* Formulario de contacto */
+    .contact-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      margin-top: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #3a6cf4;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #3a6cf4;
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* Botón volver arriba */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #3a6cf4;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background-color: #2a4fc7;
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #2a4fc7 0%, #1a3aa7 100%);
+      color: white;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 1.2rem;
+      font-size: 1.3rem;
+    }
+
+    .footer-section p {
+      margin-bottom: 0.5rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: white;
+      color: #3a6cf4;
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Mensaje de confirmación */
+    .confirmation-message {
+      display: none;
+      background-color: #d4edda;
+      color: #155724;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* Estilo para las iniciales del desarrollador */
+    .developer-credit {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .developer-credit .initials {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <i class="fas fa-church" aria-hidden="true"></i>
+        Iglesia Ríos de Agua Viva
+      </div>
+      <div class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú">☰</div>
+      <nav>
+        <ul id="menu">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Quiénes Somos</a></li>
+          <li><a href="#cultos">Cultos</a></li>
+          <li><a href="#ministerios">Ministerios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section con Animación -->
+  <div class="hero-animation" id="inicio">
+    <canvas id="particles-canvas"></canvas>
+    <div class="floating-elements">
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+    </div>
+    <div class="waves">
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+    <div class="hero-content">
+      <h1>Bienvenidos a Iglesia Ríos de Agua Viva</h1>
+      <p>"El que cree en mí, como dice la Escritura, de su interior correrán ríos de agua viva" - Juan 7:38</p>
+      <a href="#cultos" class="btn">Nuestros Cultos</a>
+    </div>
+  </div>
+
+  <!-- Sección de cultos -->
+  <section id="cultos">
+    <h2 class="section-title">Horarios de Culto</h2>
+    <div class="grid">
+      <div class="card">
+        <i class="fas fa-cross" aria-hidden="true"></i>
+        <h3>Domingo - Servicio General</h3>
+        <p>Hora: 9:00 a.m. y 11:00 a.m.<br>
+        Un tiempo de adoración, palabra y comunión para toda la familia.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-bible" aria-hidden="true"></i>
+        <h3>Miércoles - Culto de Oración</h3>
+        <p>Hora: 7:00 p.m.<br>
+        Un tiempo especial para buscar el rostro de Dios en oración e intercesión.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-users" aria-hidden="true"></i>
+        <h3>Viernes - Cultos Departamentales</h3>
+        <p>Hora: 7:00 p.m.<br>
+        Reuniones especializadas por grupos y ministerios para crecimiento espiritual.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-hands-praying" aria-hidden="true"></i>
+        <h3>Martes - Día de Ayuno</h3>
+        <p>Hora: Todo el día<br>
+        Ayuno congregacional en el templo. Un día especial para buscar a Dios con ayuno y oración.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Quiénes Somos -->
+  <section id="nosotros" class="ministries">
+    <h2 class="section-title">Quiénes Somos</h2>
+    <div class="grid">
+      <div class="card">
+        <i class="fas fa-history" aria-hidden="true"></i>
+        <h3>Nuestra Historia</h3>
+        <p>La Iglesia Ríos de Agua Viva fue fundada en 1995 con la visión de ser un lugar de refugio espiritual y crecimiento en la fe. A lo largo de los años, hemos servido a nuestra comunidad con amor y dedicación.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-bullseye" aria-hidden="true"></i>
+        <h3>Nuestra Misión</h3>
+        <p>Llevar el mensaje de salvación a través de Jesucristo, discipular a los creyentes y servir a nuestra comunidad con compasión y excelencia.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <h3>Nuestra Visión</h3>
+        <p>Ser una iglesia relevante que transforme vidas, familias y comunidades mediante el poder del Espíritu Santo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de ministerios -->
+  <section id="ministerios">
+    <h2 class="section-title">Nuestros Ministerios</h2>
+    <div class="ministry-list">
+      <div class="ministry-item">
+        <h3>Ministerio de Niños</h3>
+        <p>Programas especializados para niños de todas las edades donde aprenden sobre Dios de manera divertida y segura.</p>
+      </div>
+      <div class="ministry-item">
+        <h3>Ministerio de Jóvenes</h3>
+        <p>Un espacio donde los jóvenes pueden crecer en su fe, formar amistades sólidas y servir a la comunidad.</p>
+      </div>
+      <div class="ministry-item">
+        <h3>Ministerio de Mujeres</h3>
+        <p>Grupos de estudio, apoyo y compañerismo para mujeres de todas las edades y etapas de la vida.</p>
+      </div>
+      <div class="ministry-item">
+        <h3>Ministerio de Alabanza</h3>
+        <p>Equipo dedicado a dirigir la congregación en adoración a través de la música y las artes.</p>
+      </div>
+      <div class="ministry-item">
+        <h3>Ministerio de Servicio Comunitario</h3>
+        <p>Programas de ayuda a personas necesitadas en nuestra comunidad mediante alimentos, ropa y apoyo emocional.</p>
+      </div>
+      <div class="ministry-item">
+        <h3>Grupos de Hogar</h3>
+        <p>Reuniones pequeñas en hogares para estudio bíblico, oración y compañerismo en un ambiente más íntimo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de contacto -->
+  <section id="contacto">
+    <h2 class="section-title">Contáctanos</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+          <div>
+            <h3>Dirección</h3>
+            <p>Calle 2da, Nueva Luz ,Burunga , Panamá</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-user" aria-hidden="true"></i>
+          <div>
+            <h3>Pastor</h3>
+            <p>Jesús Arauz</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <div>
+            <h3>Email</h3>
+            <p>riosdeaguaviva@gmail.com</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-clock" aria-hidden="true"></i>
+          <div>
+            <h3>Horario de Oficina</h3>
+            <p>Lunes a Viernes: 9:00 a.m. - 5:00 p.m.</p>
+          </div>
+        </div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.158231801527!2d-79.5173889250198!3d9.022253989068382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8faca8c6d88df5bd%3A0x5df9b2d6a1ebd2a1!2sEl%20Dorado%2C%20Panam%C3%A1!5e0!3m2!1ses!2sus!4v1685678912345!5m2!1ses!2sus" allowfullscreen="" loading="lazy" title="Ubicación de la Iglesia Ríos de Agua Viva"></iframe>
+      </div>
+    </div>
+    
+    <!-- Formulario de contacto -->
+    <div class="contact-form">
+      <h3 style="text-align: center; color: #3a6cf4; margin-bottom: 1.5rem;">Envía un mensaje</h3>
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">Nombre completo</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn" style="width: 100%;">Enviar mensaje</button>
+      </form>
+      <div id="confirmationMessage" class="confirmation-message">
+        ¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Iglesia Ríos de Agua Viva</h3>
+        <p>Una comunidad de fe dedicada a servir a Dios y a nuestra comunidad.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Enlaces Rápidos</h3>
+        <p><a href="#inicio" style="color: white;">Inicio</a></p>
+        <p><a href="#nosotros" style="color: white;">Quiénes Somos</a></p>
+        <p><a href="#cultos" style="color: white;">Horarios de Culto</a></p>
+        <p><a href="#ministerios" style="color: white;">Ministerios</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Conéctate con Nosotros</h3>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Iglesia Ríos de Agua Viva | Todos los derechos reservados</p>
+      <p class="developer-credit">
+        Desarrollado por Yonathan Harding 
+        <span class="initials">YH</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Botón para volver arriba -->
+  <div class="back-to-top" id="backToTop" aria-label="Volver arriba">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // Menú móvil
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("show");
+    }
+    
+    // Cerrar menú al hacer clic en un enlace (útil en móviles)
+    document.querySelectorAll('nav a').forEach(item => {
+      item.addEventListener('click', () => {
+        document.getElementById("menu").classList.remove("show");
+      });
+    });
+
+    // Botón volver arriba
+    const backToTopButton = document.getElementById("backToTop");
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('show');
+      } else {
+        backToTopButton.classList.remove('show');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Formulario de contacto
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Aquí normalmente enviarías los datos a un servidor
+      // Por ahora, solo mostraremos un mensaje de confirmación
+      
+      const confirmationMessage = document.getElementById('confirmationMessage');
+      confirmationMessage.style.display = 'block';
+      
+      // Ocultar el mensaje después de 5 segundos
+      setTimeout(() => {
+        confirmationMessage.style.display = 'none';
+      }, 5000);
+      
+      // Limpiar el formulario
+      this.reset();
+    });
+
+    // Animación de partículas
+    function initParticles() {
+      const canvas = document.getElementById('particles-canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Ajustar tamaño del canvas
+      function resizeCanvas() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      }
+      
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+      
+      // Configuración de partículas
+      const particles = [];
+      const particleCount = 80;
+      const colors = [
+        'rgba(255, 255, 255, 0.7)',
+        'rgba(173, 216, 230, 0.6)',
+        'rgba(135, 206, 250, 0.5)',
+        'rgba(176, 224, 230, 0.4)'
+      ];
+      
+      // Crear partículas
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 3 + 1,
+          speedX: (Math.random() - 0.5) * 0.5,
+          speedY: (Math.random() - 0.5) * 0.5,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+      
+      // Dibujar partículas
+      function drawParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          
+          // Dibujar partícula
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+          
+          // Actualizar posición
+          p.x += p.speedX;
+          p.y += p.speedY;
+          
+          // Rebotar en los bordes
+          if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+          
+          // Conectar partículas cercanas
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const distance = Math.sqrt(
+              Math.pow(p.x - p2.x, 2) + Math.pow(p.y - p2.y, 2)
+            );
+            
+            if (distance < 100) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(255, 255, 255, ${0.2 * (1 - distance/100)})`;
+              ctx.lineWidth = 0.5;
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.stroke();
+            }
+          }
+        }
+        
+        requestAnimationFrame(drawParticles);
+      }
+      
+      drawParticles();
+    }
+    
+    // Iniciar animación cuando la página cargue
+    window.addEventListener('load', initParticles);
+  </script>
+
+</body>
+</html>
