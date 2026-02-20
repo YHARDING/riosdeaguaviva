@@ -47,11 +47,11 @@
       background-color: var(--white);
     }
 
-    /* ===== LOGOS EN ESQUINAS ===== */
+    /* ===== LOGOS ===== */
     .corner-logo {
       position: fixed;
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
       z-index: 9999;
       pointer-events: none;
       animation: fadeInLogo 1s ease;
@@ -65,18 +65,37 @@
       transition: var(--transition);
     }
 
-    .corner-logo:hover img {
-      transform: scale(1.05);
-    }
-
     .corner-logo-left {
       top: 20px;
       left: 20px;
     }
 
-    .corner-logo-right {
+    /* Logo redondo de Ríos en el centro arriba */
+    .center-logo {
+      position: fixed;
       top: 20px;
-      right: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 100px;
+      z-index: 9999;
+      pointer-events: none;
+      animation: fadeInLogo 1s ease;
+    }
+
+    .center-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+      transition: var(--transition);
+      border-radius: 50%;
+      border: 3px solid white;
+      background: white;
+    }
+
+    .center-logo:hover img {
+      transform: scale(1.05);
     }
 
     @keyframes fadeInLogo {
@@ -87,6 +106,17 @@
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLogoCenter {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
       }
     }
 
@@ -321,19 +351,19 @@
       font-size: 1.3rem;
     }
 
-    /* ===== GALERÍA ===== */
+    /* ===== GALERÍA SIN TÍTULOS ===== */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
       margin-top: 2rem;
     }
 
     .gallery-item {
       position: relative;
-      border-radius: 15px;
+      border-radius: 10px;
       overflow: hidden;
-      aspect-ratio: 16/9;
+      aspect-ratio: 4/3;
       box-shadow: var(--shadow);
     }
 
@@ -345,20 +375,10 @@
     }
 
     .gallery-item:hover img {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
-    .gallery-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.8));
-      color: white;
-      padding: 1rem;
-      text-align: center;
-      font-weight: 500;
-    }
+    /* Sin títulos, solo imágenes */
 
     /* ===== PASTORES ===== */
     .pastores-grid {
@@ -424,6 +444,7 @@
       justify-content: center;
       gap: 2rem;
       margin-top: 2rem;
+      flex-wrap: wrap;
     }
 
     .social-icons-large a {
@@ -554,13 +575,14 @@
     @media (max-width: 992px) {
       .hero h1 { font-size: 2.5rem; }
       .logo-text { margin-left: 100px; font-size: 1.3rem; }
+      .center-logo { width: 80px; height: 80px; }
     }
 
     @media (max-width: 768px) {
-      .corner-logo { width: 70px; height: 70px; }
+      .corner-logo { width: 60px; height: 60px; }
       .corner-logo-left { top: 10px; left: 10px; }
-      .corner-logo-right { top: 10px; right: 10px; }
-      .logo-text { margin-left: 80px; font-size: 1.1rem; padding: 0.3rem 1rem; }
+      .center-logo { width: 70px; height: 70px; top: 10px; }
+      .logo-text { margin-left: 70px; font-size: 1rem; padding: 0.3rem 1rem; }
       .hero h1 { font-size: 2rem; }
       
       .menu-toggle {
@@ -595,11 +617,11 @@
 </head>
 <body>
 
-  <!-- LOGOS EN ESQUINAS -->
+  <!-- LOGOS: Asambleas en esquina izquierda, Ríos redondo en centro arriba -->
   <div class="corner-logo corner-logo-left">
     <img src="asambleas.jpg" alt="Asambleas de Dios" onerror="this.style.display='none'">
   </div>
-  <div class="corner-logo corner-logo-right">
+  <div class="center-logo">
     <img src="rios.jpeg" alt="Ríos de Agua Viva" onerror="this.style.display='none'">
   </div>
 
@@ -644,21 +666,21 @@
     </div>
     <div class="grid">
       <div class="card">
-        <img src="obras sociales.jpeg" alt="Obras Sociales" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1526979118354-4467b1469e90?w=600'">
+        <img src="https://images.unsplash.com/photo-1526979118354-4467b1469e90?w=600" alt="Historia" class="card-img">
         <div class="card-content">
           <h3>Nuestra Historia</h3>
           <p>Fundada en 1995, hemos sido un faro de esperanza en Arraiján, transformando vidas a través del amor de Cristo y nuestras obras sociales.</p>
         </div>
       </div>
       <div class="card">
-        <img src="predicando el evangelio.jpeg" alt="Predicando el Evangelio" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1520881363902-a0ff4e722963?w=600'">
+        <img src="https://images.unsplash.com/photo-1520881363902-a0ff4e722963?w=600" alt="Misión" class="card-img">
         <div class="card-content">
           <h3>Nuestra Misión</h3>
           <p>Llevar el mensaje de salvación predicando el evangelio, discipular creyentes y servir a nuestra comunidad con excelencia y amor.</p>
         </div>
       </div>
       <div class="card">
-        <img src="cebo.jpeg" alt="Cebo" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1486312306700-d7f5a5cc5ce3?w=600'">
+        <img src="https://images.unsplash.com/photo-1486312306700-d7f5a5cc5ce3?w=600" alt="Visión" class="card-img">
         <div class="card-content">
           <h3>Nuestra Visión</h3>
           <p>Ser una iglesia relevante que transforme familias y comunidades mediante el poder del Espíritu Santo y el amor de Cristo.</p>
@@ -671,35 +693,35 @@
   <section id="pastores" style="background: #f5f8ff;">
     <div class="section-title">
       <h2>Nuestros Pastores</h2>
-      <p>Líderes con corazón de siervo</p>
+      <p>Familia pastoral al servicio de Dios</p>
     </div>
     <div class="pastores-grid">
       <div class="pastor-card">
-        <img src="pastores.jpeg" alt="Pastores" class="pastor-img" onerror="this.src='https://images.unsplash.com/photo-1557862921-37829c790f19?w=600'">
+        <img src="pastores.jpeg" alt="Familia Pastoral" class="pastor-img" onerror="this.src='https://images.unsplash.com/photo-1557862921-37829c790f19?w=600'">
         <h3>Pastor Jesús Arauz</h3>
         <p style="color: var(--primary); margin-bottom: 0.5rem;">Pastor Titular</p>
         <p style="margin-bottom: 1rem;">Sirviendo a Dios por más de 25 años con pasión y dedicación, liderando nuestra iglesia con amor y sabiduría.</p>
         <div class="pastor-social">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com/arauz7744/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
       <div class="pastor-card">
-        <img src="pastores.jpeg" alt="Pastora" class="pastor-img" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600'">
+        <img src="pastores.jpeg" alt="Familia Pastoral" class="pastor-img" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600'">
         <h3>Pastora María Arauz</h3>
         <p style="color: var(--primary); margin-bottom: 0.5rem;">Pastora de Damas</p>
         <p style="margin-bottom: 1rem;">Liderando el ministerio de mujeres con gracia y sabiduría, apoyando a las familias de nuestra congregación.</p>
         <div class="pastor-social">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com/arauz7744/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GALERÍA DE ACTIVIDADES -->
+  <!-- GALERÍA DE ACTIVIDADES - SIN TÍTULOS -->
   <section id="galeria">
     <div class="section-title">
       <h2>Galería de Actividades</h2>
@@ -708,28 +730,22 @@
     
     <div class="gallery">
       <div class="gallery-item">
-        <img src="obras sociales.jpeg" alt="Obras Sociales" onerror="this.src='https://images.unsplash.com/photo-1520865934039-1ef90311b4bd?w=600'">
-        <div class="gallery-caption">Obras Sociales - Ayudando a la comunidad</div>
+        <img src="predicando el evangelio.jpeg" alt="Predicando el evangelio" onerror="this.src='https://images.unsplash.com/photo-1520865934039-1ef90311b4bd?w=600'">
       </div>
       <div class="gallery-item">
-        <img src="predicando el evangelio.jpeg" alt="Predicando el Evangelio" onerror="this.src='https://images.unsplash.com/photo-1556028730-6b6b0a4680e6?w=600'">
-        <div class="gallery-caption">Predicando el Evangelio - Compartiendo la palabra</div>
+        <img src="pastores.jpeg" alt="Familia pastoral" onerror="this.src='https://images.unsplash.com/photo-1556028730-6b6b0a4680e6?w=600'">
       </div>
       <div class="gallery-item">
-        <img src="bautizando.jpeg" alt="Bautizando" onerror="this.src='https://images.unsplash.com/photo-1544427920-c49ccfb85579?w=600'">
-        <div class="gallery-caption">Bautismos - Nuevas vidas en Cristo</div>
+        <img src="obras sociales.jpeg" alt="Obras sociales" onerror="this.src='https://images.unsplash.com/photo-1544427920-c49ccfb85579?w=600'">
       </div>
       <div class="gallery-item">
-        <img src="cebo.jpeg" alt="Cebo" onerror="this.src='https://images.unsplash.com/photo-1534239697798-120952b76f81?w=600'">
-        <div class="gallery-caption">CEBO - Crecimiento espiritual</div>
+        <img src="cebo.jpeg" alt="CEBO" onerror="this.src='https://images.unsplash.com/photo-1534239697798-120952b76f81?w=600'">
       </div>
       <div class="gallery-item">
-        <img src="pastores.jpeg" alt="Pastores ministrando" onerror="this.src='https://images.unsplash.com/photo-1526979118354-4467b1469e90?w=600'">
-        <div class="gallery-caption">Pastores ministrando</div>
+        <img src="bautizando.jpeg" alt="Bautizo" onerror="this.src='https://images.unsplash.com/photo-1526979118354-4467b1469e90?w=600'">
       </div>
       <div class="gallery-item">
-        <img src="obras sociales.jpeg" alt="Ayuda comunitaria" onerror="this.src='https://images.unsplash.com/photo-1486312306700-d7f5a5cc5ce3?w=600'">
-        <div class="gallery-caption">Ayuda comunitaria</div>
+        <img src="predicando el evangelio.jpeg" alt="Llevando la palabra" onerror="this.src='https://images.unsplash.com/photo-1486312306700-d7f5a5cc5ce3?w=600'">
       </div>
     </div>
 
@@ -765,8 +781,8 @@
       <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Síguenos en Redes Sociales</h2>
       <p style="font-size: 1.2rem; margin-bottom: 2rem;">Conéctate con nosotros y sé parte de nuestra comunidad</p>
       <div class="social-icons-large">
+        <a href="https://www.instagram.com/arauz7744/" target="_blank" aria-label="Instagram del Pastor"><i class="fab fa-instagram"></i></a>
         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
@@ -847,9 +863,9 @@
   <footer>
     <div class="footer-content">
       <div>
-        <div style="display: flex; gap: 15px; margin-bottom: 1.5rem;">
-          <img src="asambleas.jpg" alt="Asambleas de Dios" style="height: 60px; width: auto; border-radius: 8px;" onerror="this.style.display='none'">
-          <img src="rios.jpeg" alt="Ríos de Agua Viva" style="height: 60px; width: auto; border-radius: 8px;" onerror="this.style.display='none'">
+        <div style="display: flex; gap: 15px; margin-bottom: 1.5rem; align-items: center;">
+          <img src="asambleas.jpg" alt="Asambleas de Dios" style="height: 50px; width: auto; border-radius: 8px;" onerror="this.style.display='none'">
+          <img src="rios.jpeg" alt="Ríos de Agua Viva" style="height: 50px; width: auto; border-radius: 50%; border: 2px solid white;" onerror="this.style.display='none'">
         </div>
         <h3 style="margin-bottom: 1rem;">Iglesia Ríos de Agua Viva</h3>
         <p style="opacity: 0.9;">"Ríos de agua viva fluyendo para transformar generaciones"</p>
@@ -913,11 +929,6 @@
       e.preventDefault();
       alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
       this.reset();
-    });
-
-    // Verificar que todas las imágenes locales existen
-    window.addEventListener('load', function() {
-      console.log('Página cargada con imágenes locales del repositorio');
     });
   </script>
 
