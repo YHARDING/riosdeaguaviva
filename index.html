@@ -47,7 +47,7 @@
       background-color: var(--white);
     }
 
-    /* ===== LOGOS ===== */
+    /* ===== LOGOS REDONDOS ===== */
     .corner-logo {
       position: fixed;
       width: 100px;
@@ -60,8 +60,10 @@
     .corner-logo img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       transition: var(--transition);
     }
 
@@ -322,7 +324,7 @@
       color: var(--text-light);
     }
 
-    /* ===== GALERÍA SIN TÍTULOS ===== */
+    /* ===== GALERÍA ===== */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -477,11 +479,8 @@
 
     .footer-logo {
       height: 60px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    .footer-logo.rounded {
+      width: 60px;
+      object-fit: cover;
       border-radius: 50%;
       border: 2px solid white;
     }
@@ -566,7 +565,7 @@
 </head>
 <body>
 
-  <!-- LOGOS EN SUS ÁREAS -->
+  <!-- LOGOS REDONDOS EN LAS ESQUINAS -->
   <div class="corner-logo corner-logo-left">
     <img src="asambleas.jpg" alt="Asambleas de Dios" onerror="this.style.display='none'">
   </div>
@@ -607,7 +606,7 @@
     </div>
   </section>
 
-  <!-- NOSOTROS - SOLO MISIÓN Y VISIÓN -->
+  <!-- NOSOTROS - MISIÓN Y VISIÓN -->
   <section id="nosotros">
     <div class="section-title">
       <h2>Nuestra Familia en Cristo</h2>
@@ -631,7 +630,7 @@
     </div>
   </section>
 
-  <!-- PASTOR - SOLO JESÚS ARAUZ CON evangelio.jpeg -->
+  <!-- PASTOR - JESÚS ARAUZ -->
   <section id="pastor" style="background: #f5f8ff;">
     <div class="section-title">
       <h2>Nuestro Pastor</h2>
@@ -639,7 +638,7 @@
     </div>
     <div class="pastor-container">
       <div class="pastor-card">
-        <img src="evangelio.jpeg" alt="Pastor Jesús Arauz" class="pastor-img" onerror="this.src='https://images.pexels.com/photos/5876695/pexels-photo-5876695.jpeg?auto=compress&cs=tinysrgb&w=600'">
+        <img src="https://raw.githubusercontent.com/YHARDING/riosdeaguaviva/b7ed83a3bb5a3b809ebe8b7b8255715f9eea97c4/pastores.jpeg" alt="Pastor Jesús Arauz" class="pastor-img">
         <h3>Pastor Jesús Arauz</h3>
         <p style="color: var(--primary); margin-bottom: 1rem;">Pastor Titular</p>
         <p style="margin-bottom: 1.5rem;">Sirviendo a Dios por más de 20 años con pasión y dedicación, liderando nuestra iglesia con amor y sabiduría.</p>
@@ -650,7 +649,7 @@
     </div>
   </section>
 
-  <!-- GALERÍA DE ACTIVIDADES - CON obras sociales.jpeg y bautizo.jpeg -->
+  <!-- GALERÍA DE ACTIVIDADES - CON IMÁGENES DEL REPOSITORIO -->
   <section id="galeria">
     <div class="section-title">
       <h2>Galería de Actividades</h2>
@@ -659,10 +658,13 @@
     
     <div class="gallery">
       <div class="gallery-item">
-        <img src="obras sociales.jpeg" alt="Obras sociales" onerror="this.src='https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=600'">
+        <img src="https://raw.githubusercontent.com/YHARDING/riosdeaguaviva/210a84bd99269536420ba4b0eb97b5e4cff6e954/obras%20sociales.jpeg" alt="Obras sociales">
       </div>
       <div class="gallery-item">
-        <img src="bautizo.jpeg" alt="Bautizo" onerror="this.src='https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=600'">
+        <img src="https://raw.githubusercontent.com/YHARDING/riosdeaguaviva/b7ed83a3bb5a3b809ebe8b7b8255715f9eea97c4/buaitizo%20.jpeg" alt="Bautizo">
+      </div>
+      <div class="gallery-item">
+        <img src="https://raw.githubusercontent.com/YHARDING/riosdeaguaviva/b7ed83a3bb5a3b809ebe8b7b8255715f9eea97c4/pastores.jpeg" alt="Pastores">
       </div>
     </div>
 
@@ -767,7 +769,7 @@
       <div>
         <div class="footer-logos">
           <img src="asambleas.jpg" alt="Asambleas de Dios" class="footer-logo" onerror="this.style.display='none'">
-          <img src="rios.jpeg" alt="Ríos de Agua Viva" class="footer-logo rounded" onerror="this.style.display='none'">
+          <img src="rios.jpeg" alt="Ríos de Agua Viva" class="footer-logo" onerror="this.style.display='none'">
         </div>
         <h3 style="margin-bottom: 1rem;">Iglesia Ríos de Agua Viva</h3>
         <p style="opacity: 0.9;">"Ríos de agua viva fluyendo para transformar generaciones"</p>
@@ -836,3 +838,4 @@
 
 </body>
 </html>
+
