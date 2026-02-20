@@ -110,7 +110,6 @@
       font-weight: 700;
       display: flex;
       align-items: center;
-      margin-left: 120px;
       background: rgba(255,255,255,0.1);
       padding: 0.5rem 1.5rem;
       border-radius: 50px;
@@ -350,12 +349,9 @@
       transform: scale(1.05);
     }
 
-    /* ===== PASTORES ===== */
-    .pastores-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 3rem;
-      max-width: 800px;
+    /* ===== PASTOR ===== */
+    .pastor-container {
+      max-width: 500px;
       margin: 0 auto;
     }
 
@@ -525,14 +521,14 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 992px) {
       .hero h1 { font-size: 2.5rem; }
-      .logo-text { margin-left: 100px; font-size: 1.3rem; }
+      .logo-text { font-size: 1.3rem; }
     }
 
     @media (max-width: 768px) {
       .corner-logo { width: 70px; height: 70px; }
       .corner-logo-left { top: 10px; left: 10px; }
       .corner-logo-right { top: 10px; right: 10px; }
-      .logo-text { margin-left: 80px; font-size: 1rem; padding: 0.3rem 1rem; }
+      .logo-text { font-size: 1rem; padding: 0.3rem 1rem; }
       .hero h1 { font-size: 2rem; }
       
       .menu-toggle {
@@ -590,7 +586,7 @@
         <ul id="menu">
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#nosotros">Nosotros</a></li>
-          <li><a href="#pastores">Pastores</a></li>
+          <li><a href="#pastor">Pastor</a></li>
           <li><a href="#galeria">Galería</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
@@ -635,27 +631,18 @@
     </div>
   </section>
 
-  <!-- PASTORES - FAMILIA PASTORAL CON 20 AÑOS -->
-  <section id="pastores" style="background: #f5f8ff;">
+  <!-- PASTOR - SOLO JESÚS ARAUZ CON evangelio.jpeg -->
+  <section id="pastor" style="background: #f5f8ff;">
     <div class="section-title">
-      <h2>Familia Pastoral</h2>
+      <h2>Nuestro Pastor</h2>
       <p>Sirviendo a Dios por más de 20 años</p>
     </div>
-    <div class="pastores-grid">
+    <div class="pastor-container">
       <div class="pastor-card">
-        <img src="pastores.jpeg" alt="Familia Pastoral" class="pastor-img" onerror="this.src='https://images.pexels.com/photos/5876695/pexels-photo-5876695.jpeg?auto=compress&cs=tinysrgb&w=600'">
+        <img src="evangelio.jpeg" alt="Pastor Jesús Arauz" class="pastor-img" onerror="this.src='https://images.pexels.com/photos/5876695/pexels-photo-5876695.jpeg?auto=compress&cs=tinysrgb&w=600'">
         <h3>Pastor Jesús Arauz</h3>
         <p style="color: var(--primary); margin-bottom: 1rem;">Pastor Titular</p>
-        <p style="margin-bottom: 1.5rem;">Sirviendo a Dios por más de 20 años con pasión y dedicación, liderando nuestra iglesia como familia.</p>
-        <div class="pastor-social">
-          <a href="https://www.instagram.com/arauz7744/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-      <div class="pastor-card">
-        <img src="pastores.jpeg" alt="Familia Pastoral" class="pastor-img" onerror="this.src='https://images.pexels.com/photos/5876695/pexels-photo-5876695.jpeg?auto=compress&cs=tinysrgb&w=600'">
-        <h3>Pastora María Arauz</h3>
-        <p style="color: var(--primary); margin-bottom: 1rem;">Pastora de Damas</p>
-        <p style="margin-bottom: 1.5rem;">Liderando el ministerio de mujeres con gracia y sabiduría por más de 20 años, apoyando a las familias.</p>
+        <p style="margin-bottom: 1.5rem;">Sirviendo a Dios por más de 20 años con pasión y dedicación, liderando nuestra iglesia con amor y sabiduría.</p>
         <div class="pastor-social">
           <a href="https://www.instagram.com/arauz7744/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
@@ -663,7 +650,7 @@
     </div>
   </section>
 
-  <!-- GALERÍA DE ACTIVIDADES -->
+  <!-- GALERÍA DE ACTIVIDADES - SOLO CON bautizo.jpeg (2 veces) -->
   <section id="galeria">
     <div class="section-title">
       <h2>Galería de Actividades</h2>
@@ -672,16 +659,10 @@
     
     <div class="gallery">
       <div class="gallery-item">
-        <img src="predicando el evangelio.jpeg" alt="Predicando el evangelio" onerror="this.src='https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=600'">
-      </div>
-      <div class="gallery-item">
-        <img src="pastores.jpeg" alt="Familia pastoral" onerror="this.src='https://images.pexels.com/photos/5876695/pexels-photo-5876695.jpeg?auto=compress&cs=tinysrgb&w=600'">
-      </div>
-      <div class="gallery-item">
         <img src="bautizo.jpeg" alt="Bautizo" onerror="this.src='https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=600'">
       </div>
       <div class="gallery-item">
-        <img src="obras sociales.jpeg" alt="Obras sociales" onerror="this.src='https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=600'">
+        <img src="bautizo.jpeg" alt="Bautizo" onerror="this.src='https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=600'">
       </div>
     </div>
 
@@ -796,7 +777,7 @@
         <h3 style="margin-bottom: 1.5rem;">Enlaces Rápidos</h3>
         <p><a href="#inicio" style="color: white; text-decoration: none; opacity: 0.9;">Inicio</a></p>
         <p><a href="#nosotros" style="color: white; text-decoration: none; opacity: 0.9;">Nosotros</a></p>
-        <p><a href="#pastores" style="color: white; text-decoration: none; opacity: 0.9;">Pastores</a></p>
+        <p><a href="#pastor" style="color: white; text-decoration: none; opacity: 0.9;">Pastor</a></p>
         <p><a href="#galeria" style="color: white; text-decoration: none; opacity: 0.9;">Galería</a></p>
       </div>
       <div>
