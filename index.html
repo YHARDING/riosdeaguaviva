@@ -109,17 +109,6 @@
       }
     }
 
-    @keyframes fadeInLogoCenter {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -20px);
-      }
-      to {
-        opacity: 1;
-        transform: translate(-50%, 0);
-      }
-    }
-
     /* ===== HEADER ===== */
     header {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
@@ -332,7 +321,7 @@
 
     .card-img {
       width: 100%;
-      height: 250px;
+      height: 300px;
       object-fit: cover;
       transition: var(--transition);
     }
@@ -348,13 +337,19 @@
     .card h3 {
       color: var(--primary);
       margin-bottom: 0.8rem;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .card p {
+      text-align: center;
+      color: var(--text-light);
     }
 
     /* ===== GALERÍA SIN TÍTULOS ===== */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1rem;
       margin-top: 2rem;
     }
@@ -378,13 +373,13 @@
       transform: scale(1.05);
     }
 
-    /* Sin títulos, solo imágenes */
-
     /* ===== PASTORES ===== */
     .pastores-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 3rem;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .pastor-card {
@@ -396,8 +391,8 @@
     }
 
     .pastor-img {
-      width: 200px;
-      height: 200px;
+      width: 250px;
+      height: 250px;
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 1.5rem;
@@ -412,8 +407,8 @@
     }
 
     .pastor-social a {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       background: var(--primary-light);
       color: var(--white);
       border-radius: 50%;
@@ -421,52 +416,13 @@
       align-items: center;
       justify-content: center;
       text-decoration: none;
+      font-size: 1.5rem;
       transition: var(--transition);
     }
 
     .pastor-social a:hover {
       background: var(--accent);
       transform: translateY(-3px);
-    }
-
-    /* ===== REDES SOCIALES ===== */
-    .social-section {
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: var(--white);
-      text-align: center;
-      padding: 4rem 2rem;
-      border-radius: 30px;
-      margin: 4rem 0;
-    }
-
-    .social-icons-large {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .social-icons-large a {
-      width: 70px;
-      height: 70px;
-      background: rgba(255,255,255,0.1);
-      color: var(--white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      text-decoration: none;
-      transition: var(--transition);
-      border: 2px solid transparent;
-    }
-
-    .social-icons-large a:hover {
-      background: var(--white);
-      color: var(--primary);
-      transform: translateY(-5px) rotate(360deg);
-      border-color: var(--accent);
     }
 
     /* ===== CONTACTO ===== */
@@ -607,10 +563,9 @@
         display: flex;
       }
       
-      .social-icons-large a {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
+      .pastor-img {
+        width: 200px;
+        height: 200px;
       }
     }
   </style>
@@ -658,64 +613,53 @@
     </div>
   </section>
 
-  <!-- NOSOTROS -->
+  <!-- NOSOTROS - SOLO MISIÓN Y VISIÓN CON IMÁGENES DE FAMILIA -->
   <section id="nosotros">
     <div class="section-title">
-      <h2>Quiénes Somos</h2>
-      <p>Una familia de fe comprometida con Dios y nuestra comunidad</p>
+      <h2>Nuestra Familia en Cristo</h2>
+      <p>Unidos para servir y amar</p>
     </div>
     <div class="grid">
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1526979118354-4467b1469e90?w=600" alt="Historia" class="card-img">
+        <img src="https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Familia en la iglesia" class="card-img">
         <div class="card-content">
-          <h3>Nuestra Historia</h3>
-          <p>Fundada en 1995, hemos sido un faro de esperanza en Arraiján, transformando vidas a través del amor de Cristo y nuestras obras sociales.</p>
+          <h3>Misión</h3>
+          <p>Llevar el mensaje de salvación predicando el evangelio, discipular creyentes y servir a nuestra comunidad con excelencia y amor, como una gran familia en Cristo.</p>
         </div>
       </div>
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1520881363902-a0ff4e722963?w=600" alt="Misión" class="card-img">
+        <img src="https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Familia unida" class="card-img">
         <div class="card-content">
-          <h3>Nuestra Misión</h3>
-          <p>Llevar el mensaje de salvación predicando el evangelio, discipular creyentes y servir a nuestra comunidad con excelencia y amor.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1486312306700-d7f5a5cc5ce3?w=600" alt="Visión" class="card-img">
-        <div class="card-content">
-          <h3>Nuestra Visión</h3>
-          <p>Ser una iglesia relevante que transforme familias y comunidades mediante el poder del Espíritu Santo y el amor de Cristo.</p>
+          <h3>Visión</h3>
+          <p>Ser una iglesia relevante que transforme familias y comunidades mediante el poder del Espíritu Santo, fortaleciendo los lazos familiares y el amor de Cristo.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PASTORES -->
+  <!-- PASTORES - SOLO FAMILIA PASTORAL CON INSTAGRAM -->
   <section id="pastores" style="background: #f5f8ff;">
     <div class="section-title">
-      <h2>Nuestros Pastores</h2>
-      <p>Familia pastoral al servicio de Dios</p>
+      <h2>Familia Pastoral</h2>
+      <p>Guiando nuestra iglesia con amor y dedicación</p>
     </div>
     <div class="pastores-grid">
       <div class="pastor-card">
-        <img src="pastores.jpeg" alt="Familia Pastoral" class="pastor-img" onerror="this.src='https://images.unsplash.com/photo-1557862921-37829c790f19?w=600'">
+        <img src="pastores.jpeg" alt="Familia Pastoral" class="pastor-img" onerror="this.src='https://images.pexels.com/photos/5876695/pexels-photo-5876695.jpeg?auto=compress&cs=tinysrgb&w=600'">
         <h3>Pastor Jesús Arauz</h3>
-        <p style="color: var(--primary); margin-bottom: 0.5rem;">Pastor Titular</p>
-        <p style="margin-bottom: 1rem;">Sirviendo a Dios por más de 25 años con pasión y dedicación, liderando nuestra iglesia con amor y sabiduría.</p>
+        <p style="color: var(--primary); margin-bottom: 1rem;">Pastor Titular</p>
+        <p style="margin-bottom: 1.5rem;">Sirviendo a Dios por más de 25 años con pasión y dedicación, liderando nuestra iglesia como familia.</p>
         <div class="pastor-social">
           <a href="https://www.instagram.com/arauz7744/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
       <div class="pastor-card">
-        <img src="pastores.jpeg" alt="Familia Pastoral" class="pastor-img" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600'">
+        <img src="pastores.jpeg" alt="Familia Pastoral" class="pastor-img" onerror="this.src='https://images.pexels.com/photos/5876695/pexels-photo-5876695.jpeg?auto=compress&cs=tinysrgb&w=600'">
         <h3>Pastora María Arauz</h3>
-        <p style="color: var(--primary); margin-bottom: 0.5rem;">Pastora de Damas</p>
-        <p style="margin-bottom: 1rem;">Liderando el ministerio de mujeres con gracia y sabiduría, apoyando a las familias de nuestra congregación.</p>
+        <p style="color: var(--primary); margin-bottom: 1rem;">Pastora de Damas</p>
+        <p style="margin-bottom: 1.5rem;">Liderando el ministerio de mujeres con gracia y sabiduría, apoyando a las familias de nuestra congregación.</p>
         <div class="pastor-social">
           <a href="https://www.instagram.com/arauz7744/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
     </div>
@@ -730,22 +674,16 @@
     
     <div class="gallery">
       <div class="gallery-item">
-        <img src="predicando el evangelio.jpeg" alt="Predicando el evangelio" onerror="this.src='https://images.unsplash.com/photo-1520865934039-1ef90311b4bd?w=600'">
+        <img src="predicando el evangelio.jpeg" alt="Predicando el evangelio" onerror="this.src='https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=600'">
       </div>
       <div class="gallery-item">
-        <img src="pastores.jpeg" alt="Familia pastoral" onerror="this.src='https://images.unsplash.com/photo-1556028730-6b6b0a4680e6?w=600'">
+        <img src="pastores.jpeg" alt="Familia pastoral" onerror="this.src='https://images.pexels.com/photos/5876695/pexels-photo-5876695.jpeg?auto=compress&cs=tinysrgb&w=600'">
       </div>
       <div class="gallery-item">
-        <img src="obras sociales.jpeg" alt="Obras sociales" onerror="this.src='https://images.unsplash.com/photo-1544427920-c49ccfb85579?w=600'">
+        <img src="bautizo.jpeg" alt="Bautizo" onerror="this.src='https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=600'">
       </div>
       <div class="gallery-item">
-        <img src="cebo.jpeg" alt="CEBO" onerror="this.src='https://images.unsplash.com/photo-1534239697798-120952b76f81?w=600'">
-      </div>
-      <div class="gallery-item">
-        <img src="bautizando.jpeg" alt="Bautizo" onerror="this.src='https://images.unsplash.com/photo-1526979118354-4467b1469e90?w=600'">
-      </div>
-      <div class="gallery-item">
-        <img src="predicando el evangelio.jpeg" alt="Llevando la palabra" onerror="this.src='https://images.unsplash.com/photo-1486312306700-d7f5a5cc5ce3?w=600'">
+        <img src="predicando el evangelio.jpeg" alt="Llevando la palabra" onerror="this.src='https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=600'">
       </div>
     </div>
 
@@ -774,21 +712,6 @@
       </div>
     </div>
   </section>
-
-  <!-- REDES SOCIALES -->
-  <div style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
-    <div class="social-section">
-      <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Síguenos en Redes Sociales</h2>
-      <p style="font-size: 1.2rem; margin-bottom: 2rem;">Conéctate con nosotros y sé parte de nuestra comunidad</p>
-      <div class="social-icons-large">
-        <a href="https://www.instagram.com/arauz7744/" target="_blank" aria-label="Instagram del Pastor"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-      </div>
-    </div>
-  </div>
 
   <!-- CONTACTO -->
   <section id="contacto">
@@ -934,3 +857,4 @@
 
 </body>
 </html>
+
