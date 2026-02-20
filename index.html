@@ -90,7 +90,7 @@
       }
     }
 
-    /* ===== HEADER MODERNO ===== */
+    /* ===== HEADER ===== */
     header {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: var(--white);
@@ -156,7 +156,7 @@
       width: 100%;
     }
 
-    /* ===== HERO MODERNO CON VIDEO BACKGROUND ===== */
+    /* ===== HERO ===== */
     .hero {
       position: relative;
       min-height: 80vh;
@@ -204,6 +204,17 @@
       font-size: 1.3rem;
       margin-bottom: 2rem;
       opacity: 0.95;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ===== BOTONES ===== */
@@ -313,15 +324,17 @@
     /* ===== GALERÍA ===== */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
+      margin-top: 2rem;
     }
 
     .gallery-item {
       position: relative;
       border-radius: 15px;
       overflow: hidden;
-      aspect-ratio: 1;
+      aspect-ratio: 16/9;
+      box-shadow: var(--shadow);
     }
 
     .gallery-item img {
@@ -335,33 +348,22 @@
       transform: scale(1.1);
     }
 
-    .gallery-overlay {
+    .gallery-caption {
       position: absolute;
-      top: 0;
+      bottom: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(42,79,199,0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .gallery-item:hover .gallery-overlay {
-      opacity: 1;
-    }
-
-    .gallery-overlay i {
-      color: var(--white);
-      font-size: 2rem;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-weight: 500;
     }
 
     /* ===== PASTORES ===== */
     .pastores-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 3rem;
     }
 
@@ -516,6 +518,38 @@
       gap: 3rem;
     }
 
+    /* ===== BOTÓN VOLVER ARRIBA ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--accent);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 999;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-3px);
+      background: var(--primary);
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 992px) {
       .hero h1 { font-size: 2.5rem; }
@@ -526,7 +560,7 @@
       .corner-logo { width: 70px; height: 70px; }
       .corner-logo-left { top: 10px; left: 10px; }
       .corner-logo-right { top: 10px; right: 10px; }
-      .logo-text { margin-left: 80px; font-size: 1.1rem; }
+      .logo-text { margin-left: 80px; font-size: 1.1rem; padding: 0.3rem 1rem; }
       .hero h1 { font-size: 2rem; }
       
       .menu-toggle {
@@ -549,6 +583,12 @@
       
       nav ul.show {
         display: flex;
+      }
+      
+      .social-icons-large a {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -576,7 +616,7 @@
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#nosotros">Nosotros</a></li>
           <li><a href="#pastores">Pastores</a></li>
-          <li><a href="#actividades">Actividades</a></li>
+          <li><a href="#galeria">Galería</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
@@ -590,7 +630,7 @@
       <h1>Iglesia Ríos de Agua Viva</h1>
       <p>"El que cree en mí, como dice la Escritura, de su interior correrán ríos de agua viva" - Juan 7:38</p>
       <div>
-        <a href="#actividades" class="btn">Ver actividades</a>
+        <a href="#galeria" class="btn">Ver galería</a>
         <a href="#contacto" class="btn btn-outline">Contáctanos</a>
       </div>
     </div>
@@ -604,24 +644,24 @@
     </div>
     <div class="grid">
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1526979118354-4467b1469e90?w=600" alt="Historia" class="card-img">
+        <img src="obras sociales.jpeg" alt="Obras Sociales" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1526979118354-4467b1469e90?w=600'">
         <div class="card-content">
           <h3>Nuestra Historia</h3>
-          <p>Fundada en 1995, hemos sido un faro de esperanza en Arraiján, transformando vidas a través del amor de Cristo.</p>
+          <p>Fundada en 1995, hemos sido un faro de esperanza en Arraiján, transformando vidas a través del amor de Cristo y nuestras obras sociales.</p>
         </div>
       </div>
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1520881363902-a0ff4e722963?w=600" alt="Misión" class="card-img">
+        <img src="predicando el evangelio.jpeg" alt="Predicando el Evangelio" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1520881363902-a0ff4e722963?w=600'">
         <div class="card-content">
           <h3>Nuestra Misión</h3>
-          <p>Llevar el mensaje de salvación, discipular creyentes y servir a nuestra comunidad con excelencia y amor.</p>
+          <p>Llevar el mensaje de salvación predicando el evangelio, discipular creyentes y servir a nuestra comunidad con excelencia y amor.</p>
         </div>
       </div>
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1486312306700-d7f5a5cc5ce3?w=600" alt="Visión" class="card-img">
+        <img src="cebo.jpeg" alt="Cebo" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1486312306700-d7f5a5cc5ce3?w=600'">
         <div class="card-content">
           <h3>Nuestra Visión</h3>
-          <p>Ser una iglesia relevante que transforme familias y comunidades mediante el poder del Espíritu Santo.</p>
+          <p>Ser una iglesia relevante que transforme familias y comunidades mediante el poder del Espíritu Santo y el amor de Cristo.</p>
         </div>
       </div>
     </div>
@@ -635,10 +675,10 @@
     </div>
     <div class="pastores-grid">
       <div class="pastor-card">
-        <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?w=600" alt="Pastor Jesús Arauz" class="pastor-img">
+        <img src="pastores.jpeg" alt="Pastores" class="pastor-img" onerror="this.src='https://images.unsplash.com/photo-1557862921-37829c790f19?w=600'">
         <h3>Pastor Jesús Arauz</h3>
         <p style="color: var(--primary); margin-bottom: 0.5rem;">Pastor Titular</p>
-        <p style="margin-bottom: 1rem;">Sirviendo a Dios por más de 25 años con pasión y dedicación.</p>
+        <p style="margin-bottom: 1rem;">Sirviendo a Dios por más de 25 años con pasión y dedicación, liderando nuestra iglesia con amor y sabiduría.</p>
         <div class="pastor-social">
           <a href="#"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
@@ -646,10 +686,10 @@
         </div>
       </div>
       <div class="pastor-card">
-        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600" alt="Pastora María Arauz" class="pastor-img">
+        <img src="pastores.jpeg" alt="Pastora" class="pastor-img" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600'">
         <h3>Pastora María Arauz</h3>
         <p style="color: var(--primary); margin-bottom: 0.5rem;">Pastora de Damas</p>
-        <p style="margin-bottom: 1rem;">Liderando el ministerio de mujeres con gracia y sabiduría.</p>
+        <p style="margin-bottom: 1rem;">Liderando el ministerio de mujeres con gracia y sabiduría, apoyando a las familias de nuestra congregación.</p>
         <div class="pastor-social">
           <a href="#"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
@@ -659,59 +699,62 @@
     </div>
   </section>
 
-  <!-- ACTIVIDADES DE LA IGLESIA -->
-  <section id="actividades">
+  <!-- GALERÍA DE ACTIVIDADES -->
+  <section id="galeria">
     <div class="section-title">
-      <h2>Actividades de la Iglesia</h2>
-      <p>Viviendo nuestra fe en comunidad</p>
+      <h2>Galería de Actividades</h2>
+      <p>Momentos especiales en nuestra iglesia</p>
     </div>
     
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="obras sociales.jpeg" alt="Obras Sociales" onerror="this.src='https://images.unsplash.com/photo-1520865934039-1ef90311b4bd?w=600'">
+        <div class="gallery-caption">Obras Sociales - Ayudando a la comunidad</div>
+      </div>
+      <div class="gallery-item">
+        <img src="predicando el evangelio.jpeg" alt="Predicando el Evangelio" onerror="this.src='https://images.unsplash.com/photo-1556028730-6b6b0a4680e6?w=600'">
+        <div class="gallery-caption">Predicando el Evangelio - Compartiendo la palabra</div>
+      </div>
+      <div class="gallery-item">
+        <img src="bautizando.jpeg" alt="Bautizando" onerror="this.src='https://images.unsplash.com/photo-1544427920-c49ccfb85579?w=600'">
+        <div class="gallery-caption">Bautismos - Nuevas vidas en Cristo</div>
+      </div>
+      <div class="gallery-item">
+        <img src="cebo.jpeg" alt="Cebo" onerror="this.src='https://images.unsplash.com/photo-1534239697798-120952b76f81?w=600'">
+        <div class="gallery-caption">CEBO - Crecimiento espiritual</div>
+      </div>
+      <div class="gallery-item">
+        <img src="pastores.jpeg" alt="Pastores ministrando" onerror="this.src='https://images.unsplash.com/photo-1526979118354-4467b1469e90?w=600'">
+        <div class="gallery-caption">Pastores ministrando</div>
+      </div>
+      <div class="gallery-item">
+        <img src="obras sociales.jpeg" alt="Ayuda comunitaria" onerror="this.src='https://images.unsplash.com/photo-1486312306700-d7f5a5cc5ce3?w=600'">
+        <div class="gallery-caption">Ayuda comunitaria</div>
+      </div>
+    </div>
+
     <!-- Horarios de Culto -->
-    <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Horarios de Culto</h3>
-    <div class="grid" style="margin-bottom: 4rem;">
-      <div class="card">
+    <h3 style="text-align: center; color: var(--primary); margin: 4rem 0 2rem;">Horarios de Culto</h3>
+    <div class="grid" style="margin-bottom: 2rem;">
+      <div class="card" style="text-align: center; padding: 2rem;">
         <i class="fas fa-cross" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;"></i>
         <h3>Domingo</h3>
         <p>9:00 AM y 11:00 AM<br>Servicio General</p>
       </div>
-      <div class="card">
+      <div class="card" style="text-align: center; padding: 2rem;">
         <i class="fas fa-pray" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;"></i>
         <h3>Miércoles</h3>
         <p>7:00 PM<br>Culto de Oración</p>
       </div>
-      <div class="card">
+      <div class="card" style="text-align: center; padding: 2rem;">
         <i class="fas fa-users" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;"></i>
         <h3>Viernes</h3>
         <p>7:00 PM<br>Cultos Departamentales</p>
       </div>
-    </div>
-
-    <!-- Galería de Actividades -->
-    <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Galería de Actividades</h3>
-    <div class="gallery">
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1520865934039-1ef90311b4bd?w=600" alt="Culto de Jóvenes">
-        <div class="gallery-overlay">
-          <i class="fas fa-search-plus"></i>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1556028730-6b6b0a4680e6?w=600" alt="Ministerio de Niños">
-        <div class="gallery-overlay">
-          <i class="fas fa-search-plus"></i>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1544427920-c49ccfb85579?w=600" alt="Grupos de Hogar">
-        <div class="gallery-overlay">
-          <i class="fas fa-search-plus"></i>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1534239697798-120952b76f81?w=600" alt="Bautismos">
-        <div class="gallery-overlay">
-          <i class="fas fa-search-plus"></i>
-        </div>
+      <div class="card" style="text-align: center; padding: 2rem;">
+        <i class="fas fa-hand-holding-heart" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;"></i>
+        <h3>Martes</h3>
+        <p>Día de Ayuno<br>Oración e Intercesión</p>
       </div>
     </div>
   </section>
@@ -810,13 +853,14 @@
         </div>
         <h3 style="margin-bottom: 1rem;">Iglesia Ríos de Agua Viva</h3>
         <p style="opacity: 0.9;">"Ríos de agua viva fluyendo para transformar generaciones"</p>
+        <p style="opacity: 0.9; margin-top: 1rem;">Afiliada a las Asambleas de Dios</p>
       </div>
       <div>
         <h3 style="margin-bottom: 1.5rem;">Enlaces Rápidos</h3>
         <p><a href="#inicio" style="color: white; text-decoration: none; opacity: 0.9;">Inicio</a></p>
         <p><a href="#nosotros" style="color: white; text-decoration: none; opacity: 0.9;">Nosotros</a></p>
         <p><a href="#pastores" style="color: white; text-decoration: none; opacity: 0.9;">Pastores</a></p>
-        <p><a href="#actividades" style="color: white; text-decoration: none; opacity: 0.9;">Actividades</a></p>
+        <p><a href="#galeria" style="color: white; text-decoration: none; opacity: 0.9;">Galería</a></p>
       </div>
       <div>
         <h3 style="margin-bottom: 1.5rem;">Horarios</h3>
@@ -833,7 +877,7 @@
   </footer>
 
   <!-- BOTÓN VOLVER ARRIBA -->
-  <div class="back-to-top" id="backToTop" style="position: fixed; bottom: 30px; right: 30px; background: var(--accent); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 999; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+  <div class="back-to-top" id="backToTop">
     <i class="fas fa-arrow-up"></i>
   </div>
 
@@ -854,11 +898,9 @@
     const backToTop = document.getElementById("backToTop");
     window.addEventListener('scroll', () => {
       if (window.pageYOffset > 300) {
-        backToTop.style.opacity = "1";
-        backToTop.style.visibility = "visible";
+        backToTop.classList.add('show');
       } else {
-        backToTop.style.opacity = "0";
-        backToTop.style.visibility = "hidden";
+        backToTop.classList.remove('show');
       }
     });
 
@@ -866,11 +908,16 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Formulario
+    // Formulario de contacto
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
       alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
       this.reset();
+    });
+
+    // Verificar que todas las imágenes locales existen
+    window.addEventListener('load', function() {
+      console.log('Página cargada con imágenes locales del repositorio');
     });
   </script>
 
