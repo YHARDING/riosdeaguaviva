@@ -64,11 +64,12 @@
     .corner-logo img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* Cambiado de cover a contain para que no se corten */
       border-radius: 50%;
       border: 3px solid white;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       transition: var(--transition);
+      background-color: white; /* Fondo blanco para logos con transparencia */
     }
 
     .corner-logo-left {
@@ -131,7 +132,7 @@
       color: var(--accent);
     }
 
-    /* ===== MENÚ MÓVIL MEJORADO ===== */
+    /* ===== MENÚ MÓVIL ===== */
     .menu-toggle {
       display: none;
       font-size: 2rem;
@@ -328,11 +329,19 @@
       box-shadow: var(--shadow);
     }
 
+    /* ===== IMÁGENES SIN RECORTES ===== */
     .card-img {
       width: 100%;
-      height: 250px;
-      object-fit: cover;
+      height: auto; /* Cambiado de 300px a auto */
+      max-height: 350px;
+      object-fit: contain; /* Cambiado de cover a contain */
+      object-position: center;
+      background-color: #f0f0f0; /* Fondo gris suave mientras carga */
       transition: var(--transition);
+    }
+
+    .card:hover .card-img {
+      transform: scale(1.02);
     }
 
     .card-content {
@@ -352,11 +361,11 @@
       font-size: 0.95rem;
     }
 
-    /* ===== GALERÍA ===== */
+    /* ===== GALERÍA SIN RECORTES ===== */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
       margin-top: 1.5rem;
       padding: 0 0.5rem;
     }
@@ -365,19 +374,82 @@
       position: relative;
       border-radius: 15px;
       overflow: hidden;
-      aspect-ratio: 4/3;
       box-shadow: var(--shadow-sm);
+      background-color: #f0f0f0;
     }
 
     .gallery-item img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto; /* Altura automática */
+      min-height: 250px;
+      object-fit: contain; /* Contiene la imagen completa sin recortar */
+      object-position: center;
       transition: var(--transition);
     }
 
     .gallery-item:hover img {
-      transform: scale(1.03);
+      transform: scale(1.02);
+    }
+
+    /* ===== SECCIÓN DE CULTOS DESTACADA ===== */
+    .cultos-section {
+      background: linear-gradient(135deg, #f5f8ff 0%, #e8f0fe 100%);
+      border-radius: 30px;
+      padding: 3rem 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .cultos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .culto-card {
+      background: var(--white);
+      padding: 2rem 1.5rem;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(42,79,199,0.1);
+    }
+
+    .culto-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(42,79,199,0.15);
+    }
+
+    .culto-card i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .culto-card h3 {
+      color: var(--primary-dark);
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .culto-card .dia {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .culto-card .hora {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .culto-card p {
+      color: var(--text-light);
+      font-size: 0.95rem;
     }
 
     /* ===== PASTOR ===== */
@@ -390,19 +462,21 @@
     .pastor-card {
       text-align: center;
       background: var(--white);
-      padding: 1.8rem;
+      padding: 2rem 1.5rem;
       border-radius: 20px;
       box-shadow: var(--shadow);
     }
 
     .pastor-img {
-      width: clamp(180px, 50vw, 250px);
-      height: clamp(180px, 50vw, 250px);
+      width: clamp(200px, 50vw, 280px);
+      height: clamp(200px, 50vw, 280px);
       border-radius: 50%;
-      object-fit: cover;
+      object-fit: cover; /* Para fotos de perfil sí usamos cover */
+      object-position: center;
       margin: 0 auto 1.5rem;
       border: 5px solid var(--primary-light);
       display: block;
+      box-shadow: var(--shadow-sm);
     }
 
     .pastor-social {
@@ -538,9 +612,10 @@
     .footer-logo {
       width: 55px;
       height: 55px;
-      object-fit: cover;
+      object-fit: contain; /* Logos sin recortar */
       border-radius: 50%;
       border: 2px solid white;
+      background-color: white;
     }
 
     .footer-section h3 {
@@ -652,17 +727,22 @@
         padding: 0.7rem 1.5rem;
         margin: 0.2rem;
       }
+      
+      .cultos-section {
+        padding: 2rem 1rem;
+      }
     }
 
     @media (max-width: 480px) {
       .logo-text {
         margin-left: 65px;
         padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
       }
       
       .corner-logo {
-        width: 55px;
-        height: 55px;
+        width: 50px;
+        height: 50px;
       }
       
       .hero h1 {
@@ -689,14 +769,13 @@
       }
     }
 
-    /* ===== OPTIMIZACIONES DE IMAGEN ===== */
+    /* ===== OPTIMIZACIONES ===== */
     img {
       max-width: 100%;
       height: auto;
       display: block;
     }
 
-    /* ===== MEJORAS DE TÁCTIL ===== */
     button, a, .btn, .menu-toggle, .back-to-top {
       touch-action: manipulation;
     }
@@ -724,6 +803,7 @@
         <ul id="menu">
           <li><a href="#inicio" onclick="closeMenu()">Inicio</a></li>
           <li><a href="#nosotros" onclick="closeMenu()">Nosotros</a></li>
+          <li><a href="#cultos" onclick="closeMenu()">Cultos</a></li>
           <li><a href="#pastor" onclick="closeMenu()">Pastor</a></li>
           <li><a href="#galeria" onclick="closeMenu()">Galería</a></li>
           <li><a href="#contacto" onclick="closeMenu()">Contacto</a></li>
@@ -739,7 +819,7 @@
       <h1>Iglesia Ríos de Agua Viva</h1>
       <p>"El que cree en mí, como dice la Escritura, de su interior correrán ríos de agua viva" - Juan 7:38</p>
       <div>
-        <a href="#galeria" class="btn">Ver galería</a>
+        <a href="#cultos" class="btn">Nuestros Cultos</a>
         <a href="#contacto" class="btn btn-outline">Contáctanos</a>
       </div>
     </div>
@@ -769,6 +849,50 @@
     </div>
   </section>
 
+  <!-- SECCIÓN DE CULTOS DESTACADA -->
+  <section id="cultos">
+    <div class="section-title">
+      <h2>Días de Culto y Oración</h2>
+      <p>Te esperamos para adorar juntos</p>
+    </div>
+    
+    <div class="cultos-section">
+      <div class="cultos-grid">
+        <div class="culto-card">
+          <i class="fas fa-cross"></i>
+          <div class="dia">DOMINGO</div>
+          <div class="hora">9:00 AM y 11:00 AM</div>
+          <h3>Servicio General</h3>
+          <p>Un tiempo de adoración, palabra y comunión para toda la familia.</p>
+        </div>
+        
+        <div class="culto-card">
+          <i class="fas fa-pray"></i>
+          <div class="dia">MIÉRCOLES</div>
+          <div class="hora">7:00 PM</div>
+          <h3>Culto de Oración</h3>
+          <p>Un tiempo especial para buscar el rostro de Dios en oración e intercesión.</p>
+        </div>
+        
+        <div class="culto-card">
+          <i class="fas fa-users"></i>
+          <div class="dia">VIERNES</div>
+          <div class="hora">7:00 PM</div>
+          <h3>Cultos Departamentales</h3>
+          <p>Reuniones especializadas por grupos y ministerios para crecimiento espiritual.</p>
+        </div>
+        
+        <div class="culto-card">
+          <i class="fas fa-hand-holding-heart"></i>
+          <div class="dia">MARTES</div>
+          <div class="hora">Todo el día</div>
+          <h3>Día de Ayuno</h3>
+          <p>Ayuno congregacional en el templo. Un día especial para buscar a Dios.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PASTOR - JESÚS ARAUZ -->
   <section id="pastor" style="background: #f5f8ff;">
     <div class="section-title">
@@ -788,7 +912,7 @@
     </div>
   </section>
 
-  <!-- GALERÍA DE ACTIVIDADES -->
+  <!-- GALERÍA DE ACTIVIDADES - IMÁGENES COMPLETAS SIN RECORTES -->
   <section id="galeria">
     <div class="section-title">
       <h2>Galería de Actividades</h2>
@@ -804,31 +928,6 @@
       </div>
       <div class="gallery-item">
         <img src="https://raw.githubusercontent.com/YHARDING/riosdeaguaviva/b7ed83a3bb5a3b809ebe8b7b8255715f9eea97c4/pastores.jpeg" alt="Pastores" loading="lazy">
-      </div>
-    </div>
-
-    <!-- Horarios de Culto -->
-    <h3 style="text-align: center; color: var(--primary); margin: 3rem 0 1.5rem; font-size: 1.5rem;">Horarios de Culto</h3>
-    <div class="grid" style="margin-bottom: 1rem;">
-      <div class="card" style="text-align: center; padding: 1.5rem;">
-        <i class="fas fa-cross" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.8rem;"></i>
-        <h3>Domingo</h3>
-        <p>9:00 AM y 11:00 AM<br>Servicio General</p>
-      </div>
-      <div class="card" style="text-align: center; padding: 1.5rem;">
-        <i class="fas fa-pray" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.8rem;"></i>
-        <h3>Miércoles</h3>
-        <p>7:00 PM<br>Culto de Oración</p>
-      </div>
-      <div class="card" style="text-align: center; padding: 1.5rem;">
-        <i class="fas fa-users" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.8rem;"></i>
-        <h3>Viernes</h3>
-        <p>7:00 PM<br>Cultos Departamentales</p>
-      </div>
-      <div class="card" style="text-align: center; padding: 1.5rem;">
-        <i class="fas fa-hand-holding-heart" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.8rem;"></i>
-        <h3>Martes</h3>
-        <p>Día de Ayuno<br>Oración e Intercesión</p>
       </div>
     </div>
   </section>
@@ -915,9 +1014,9 @@
         <h3>Enlaces Rápidos</h3>
         <p><a href="#inicio">Inicio</a></p>
         <p><a href="#nosotros">Nosotros</a></p>
+        <p><a href="#cultos">Cultos</a></p>
         <p><a href="#pastor">Pastor</a></p>
         <p><a href="#galeria">Galería</a></p>
-        <p><a href="#contacto">Contacto</a></p>
       </div>
       <div class="footer-section">
         <h3>Horarios</h3>
@@ -986,6 +1085,5 @@
 
 </body>
 </html>
-
 
 
