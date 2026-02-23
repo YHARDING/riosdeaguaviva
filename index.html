@@ -361,34 +361,33 @@
       font-size: 0.95rem;
     }
 
-    /* ===== GALERÍA SIN RECORTES ===== */
+    /* ===== GALERÍA CON TAMAÑO UNIFORME ===== */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
       margin-top: 1.5rem;
       padding: 0 0.5rem;
     }
 
     .gallery-item {
-      position: relative;
-      border-radius: 15px;
+      aspect-ratio: 4/3;
       overflow: hidden;
+      border-radius: 15px;
       box-shadow: var(--shadow-sm);
       background-color: #f0f0f0;
     }
 
     .gallery-item img {
       width: 100%;
-      height: auto;
-      min-height: 250px;
-      object-fit: contain;
+      height: 100%;
+      object-fit: cover; /* Cover para que todas tengan el mismo tamaño sin bordes */
       object-position: center;
       transition: var(--transition);
     }
 
     .gallery-item:hover img {
-      transform: scale(1.02);
+      transform: scale(1.05);
     }
 
     /* ===== SECCIÓN DE CULTOS DESTACADA ===== */
@@ -912,7 +911,7 @@
     </div>
   </section>
 
-  <!-- GALERÍA DE ACTIVIDADES - CON LAS NUEVAS 5 IMÁGENES -->
+  <!-- GALERÍA DE ACTIVIDADES - CON LAS 5 IMÁGENES DE TAMAÑO UNIFORME -->
   <section id="galeria">
     <div class="section-title">
       <h2>Galería de Actividades</h2>
@@ -920,20 +919,29 @@
     </div>
     
     <div class="gallery">
+      <!-- ACTIVIDAD -->
       <div class="gallery-item">
-        <img src="ACTIVID.jpeg" alt="Actividad de la iglesia" loading="lazy" onerror="this.src='https://raw.githubusercontent.com/YHARDING/riosdeaguaviva/210a84bd99269536420ba4b0eb97b5e4cff6e954/obras%20sociales.jpeg'">
+        <img src="https://raw.githubusercontent.com/YHARDING/riosdeaguaviva/f1f4102dbe6e6d570eb93b15000f650983abea5e/ACTIVID%20.jpeg" alt="Actividad de la iglesia" loading="lazy">
       </div>
+      
+      <!-- ADORACIÓN -->
       <div class="gallery-item">
-        <img src="ADORACIÓN.jpeg" alt="Adoración" loading="lazy" onerror="this.src='https://raw.githubusercontent.com/YHARDING/riosdeaguaviva/b7ed83a3bb5a3b809ebe8b7b8255715f9eea97c4/buaitizo%20.jpeg'">
+        <img src="https://raw.githubusercontent.com/YHARDING/riosdeaguaviva/f1f4102dbe6e6d570eb93b15000f650983abea5e/ADORACION%20.jpeg" alt="Adoración" loading="lazy">
       </div>
+      
+      <!-- APOYO -->
       <div class="gallery-item">
-        <img src="APOYO.jpeg" alt="Apoyo comunitario" loading="lazy" onerror="this.src='https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=600'">
+        <img src="https://raw.githubusercontent.com/YHARDING/riosdeaguaviva/f1f4102dbe6e6d570eb93b15000f650983abea5e/APOYO%20.jpeg" alt="Apoyo comunitario" loading="lazy">
       </div>
+      
+      <!-- ORACIÓN (solo una vez) -->
       <div class="gallery-item">
-        <img src="CULTO.jpeg" alt="Culto" loading="lazy" onerror="this.src='https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&cs=tinysrgb&w=600'">
+        <img src="https://raw.githubusercontent.com/YHARDING/riosdeaguaviva/f1f4102dbe6e6d570eb93b15000f650983abea5e/OR.jpeg" alt="Oración" loading="lazy">
       </div>
+      
+      <!-- CULTO -->
       <div class="gallery-item">
-        <img src="OR.jpeg" alt="Oración" loading="lazy" onerror="this.src='https://images.pexels.com/photos/5876695/pexels-photo-5876695.jpeg?auto=compress&cs=tinysrgb&w=600'">
+        <img src="https://raw.githubusercontent.com/YHARDING/riosdeaguaviva/f1f4102dbe6e6d570eb93b15000f650983abea5e/CULTO.jpeg" alt="Culto" loading="lazy">
       </div>
     </div>
   </section>
